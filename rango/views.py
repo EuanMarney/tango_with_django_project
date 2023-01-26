@@ -21,8 +21,10 @@ def index(request):
     # query for all categories, order by likes, retrive only top 5 or less
     category_list = Category.objects.order_by('-likes')[:5]
 
+    page_list = Page.objects.order_by('-views')[:5]
+
     # Construct a dictionary to pass to the template engine as its context.
-    context_dict = {'boldmessage': 'Crunchy, creamy, cookie, candy, cupcake!', 'categories': category_list}
+    context_dict = {'boldmessage': 'Crunchy, creamy, cookie, candy, cupcake!', 'categories': category_list, 'pages': page_list}
 
     # Return a rendered response to send to the client.
     return render(request, 'rango/index.html', context=context_dict)
